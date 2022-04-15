@@ -6,7 +6,7 @@ import java.util.List;
 public class Persone implements Serializable {
 
     private List<Persona> listaPersone;
-    /*private InterfaceDB<Persona> DB;
+    private InterfaceDB<Persona> DB;
 
     public InterfaceDB<Persona> getDB() {
         return DB;
@@ -15,7 +15,7 @@ public class Persone implements Serializable {
     public void setDB(InterfaceDB<Persona> DB) {
         this.DB = DB;
     }
-    */
+
     public List<Persona> getListaPersone() {
         return listaPersone;
     }

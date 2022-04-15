@@ -7,8 +7,6 @@ public class Canzone implements Serializable {
     private String Nome;
     private String Artista;
 
-   // private interface DB <Canzone> get DB(){ da sistemare
-
     public Canzone(){
     }
 
@@ -18,7 +16,7 @@ public class Canzone implements Serializable {
         this.Nome=Nome;
         this.Artista= Artista;
 
-        }
+    }
 
     public int getID() {
         return ID;
@@ -33,7 +31,7 @@ public class Canzone implements Serializable {
     }
 
     public void setNome(String nome) {
-        Nome = nome;
+        this.Nome = nome;
     }
 
     public String getArtista() {
@@ -41,6 +39,6 @@ public class Canzone implements Serializable {
     }
 
     public void setArtista(String Artista) {
-        Artista = Artista;
+        this.Artista = Artista;
     }
 }
