@@ -1,3 +1,5 @@
+package emotionalsongs;
+
 import java.io.Serializable;
 
 public class Canzoni implements Serializable {
