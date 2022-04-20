@@ -23,4 +23,18 @@ public class Persone implements Serializable {
     public void setListaPersone(List<Persona> listaPersone) {
         this.listaPersone = listaPersone;
     }
+
+    public void accedi(String codice_fiscale, String password)
+    {
+        if(!Authentication.isIslogged())
+        {
+            for (Persona p: listaPersone) {
+                if(p.getCodiceFiscale().equals(codice_fiscale) && p.getPassword().equals(password)) {
+                    Authentication aut = Authentication.getAuthentication();
+                    Authentication.loggedAs = p;
+                    break;
+                }
+            }
+        }
+    }
 }
