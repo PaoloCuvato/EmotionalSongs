@@ -1,3 +1,5 @@
+package emotionalsongs;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,14 +19,12 @@ public class CollezioneCanzoni implements Serializable {
         come una classica lista */
     }
 
-    public void aggiungiCanzone(int id_canzone)
-    {
+    public void aggiungiCanzone(int id_canzone) {
         //futura aggiunta aumentare di 10 in 10 la lista
         lista_canzoni.add(Integer.valueOf(id_canzone));
     }
 
-    public void rimuoviCanzone(int id_canzone)
-    {
+    public void rimuoviCanzone(int id_canzone) {
         lista_canzoni.remove(Integer.valueOf(id_canzone));
     }
 
