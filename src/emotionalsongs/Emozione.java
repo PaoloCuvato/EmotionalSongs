@@ -1,6 +1,9 @@
 package emotionalsongs;
 
-public enum Emozione {
+import java.io.Serializable;
+
+public enum Emozione implements Serializable
+{
     WONDER,
     TRANSCENDENCE,
     TENDERNESS,

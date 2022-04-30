@@ -1,19 +1,19 @@
 package emotionalsongs;
 
-import java.io.Serializable;
+import java.io.IOException;
 import java.util.List;
 
-public class Persone implements Serializable {
+public class Persone {
 
     private List<Persona> listaPersone;
-    private InterfaceDB<Persona> DB;
+    private InterfaceDB<Persona> db;
 
     public InterfaceDB<Persona> getDB() {
-        return DB;
+        return db;
     }
 
     public void setDB(InterfaceDB<Persona> DB) {
-        this.DB = DB;
+        this.db = DB;
     }
 
     public List<Persona> getListaPersone() {
@@ -22,5 +22,11 @@ public class Persone implements Serializable {
 
     public void setListaPersone(List<Persona> listaPersone) {
         this.listaPersone = listaPersone;
+    }
+    
+    public Persone() throws IOException, ClassNotFoundException
+    {
+        db = new FileDB<>("../../data/UtentiRegistrati.txt");
+        listaPersone = db.getAll();
     }
 }
