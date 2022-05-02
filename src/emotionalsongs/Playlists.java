@@ -31,7 +31,7 @@ public class Playlists implements Serializable
 	
 	public Playlists() throws IOException, ClassNotFoundException
 	{
-        db = new FileDB<>("../../data/Playlist.txt");
+		db = new FileDB<>("../../data/Playlist.txt");
 		playlists = db.getAll();
 	}
 }

@@ -22,7 +22,7 @@ public class FileDB<T> implements InterfaceDB<T>
 		{
 			file.createNewFile();
 		}
-		if(file.canRead() && file.canWrite())
+		if (file.canRead() && file.canWrite())
 		{
 			input = new FileInputStream(file);
 			output = new FileOutputStream(file);
