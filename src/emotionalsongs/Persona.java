@@ -77,5 +77,12 @@ public class Persona implements Serializable, Comparable<Persona> {
     public int compareTo(Persona persona) {
         if(persona == null) return 1;
         return codiceFiscale.compareTo(persona.codiceFiscale);
+        /* ritorna:
+             <0 se obj1<obj2
+             0 se obj1==obj2
+             >0 se obj1>obj2
+         */
     }
+
+
 }
