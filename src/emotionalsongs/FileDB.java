@@ -15,7 +15,7 @@ public class FileDB<T> implements InterfaceDB<T>{
         input= new FileInputStream(path.toFile());
     }
 
-    public List getAll() throws Exception {
+    public  List getAll() throws Exception {
 
         ObjectInputStream objectstream= new ObjectInputStream(input);
         ArrayList<T> lista= new ArrayList<T>();
