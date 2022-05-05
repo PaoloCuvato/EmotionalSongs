@@ -68,5 +68,16 @@ public class Persone
 		}
 		return true;
 	}
-	
+
+	public boolean accedi(String userId, String password)
+	{
+		for(Persona persona : listaPersone)
+		{
+			if( ((persona.getUserId()).equals(userId)) && ((persona.getPassword().equals(password))) )
+				return true;    //accesso riuscito
+		}
+		return false;  //accesso non riuscito
+	}
+
+
 }

@@ -12,10 +12,10 @@ public class Persona implements Serializable, Comparable<Persona>
 	private String indirizzoFisico;
 	private String email;
 	private String password;
+	private String userId;
 	
 	//costruttore
-	public Persona()
-	{
+	public Persona(){
 	}
 	
 	public Persona(String nome, String cognome, String codiceFiscale, String indirizzoFisico, String email, String password)
@@ -58,6 +58,10 @@ public class Persona implements Serializable, Comparable<Persona>
 	{
 		return password;
 	}
+
+	public String getUserId(){
+		return userId;
+	}
 	
 	//setter
 	public void setNome(String nuovoNome)
@@ -88,6 +92,10 @@ public class Persona implements Serializable, Comparable<Persona>
 	public void setPassword(String nuovaPassword)
 	{
 		this.password = nuovaPassword;
+	}
+
+	public void setUserId(String userId){
+		this.userId = userId;
 	}
 	
 	public int compareTo(Persona persona)
