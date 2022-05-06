@@ -1,6 +1,6 @@
 package emotionalsongs;
 
-import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 public class Persone
