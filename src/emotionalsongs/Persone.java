@@ -1,6 +1,6 @@
 package emotionalsongs;
 
-import java.io.Serializable;
+import java.io.IOException;
 import java.util.List;
 
 public class Persone
@@ -31,7 +31,7 @@ public class Persone
 		this.listaPersone = listaPersone;
 	}
 	
-	public Persone() throws IOException, ClassNotFoundException
+	public Persone() throws IOException
 	{
 		db = new FileDB<>("../../data/UtentiRegistrati.txt");
 		listaPersone = db.getAll();

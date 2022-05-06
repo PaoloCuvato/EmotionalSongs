@@ -1,20 +1,42 @@
 package emotionalsongs;
-
 public class Authentication {
 
-    public static Persona loggedAs;
-    public static boolean islogged = false;
+    private static Persona loggedAs;
     private static Authentication authentication= new Authentication();
 
-    private Authentication() {
-    }
-
-    public static boolean isIslogged() {
-        return islogged;
-    }
+    private Authentication() {}
 
     public static Authentication getAuthentication()
     {
-        return authentication;
+        if(loggedAs == null)
+            return null;
+        else
+            return authentication;
+    }
+    
+    public static void setAuthentication(Persona p)
+    {
+        loggedAs = p;
+    }
+    
+    public static Persona getLoggedAs()
+    {
+        if(loggedAs == null)
+            return null;
+        else
+            return loggedAs;
+    }
+    
+    public static void logOut()
+    {
+        loggedAs = null;
+    }
+    
+    public static boolean isLogged()
+    {
+        if(loggedAs == null)
+            return false;
+        else
+            return true;
     }
 }
