@@ -7,22 +7,20 @@ public class Canzone implements Serializable,Comparable<Canzone>
 	private int ID;
 	private String Nome;
 	private String Artista;
-	private  int anno;
+	private int anno;
 
 	public Canzone()
 	{
 	}
-
+	
 	public Canzone(int ID, String Nome, String Artista,int anno)
 	{
-
 		this.ID = ID;
 		this.Nome = Nome;
 		this.Artista = Artista;
 		this.anno=anno;
-
 	}
-
+	
 	public int getID()
 	{
 		return ID;
@@ -67,7 +65,7 @@ public class Canzone implements Serializable,Comparable<Canzone>
 			return 0;
 		if (ID> o.getID()|| o== null)
 			return 1;
-		else  return -1;
+		else return -1;
 	}
 }
 // scrive compare to e restituisce  1 se maggiore ,-1 se minore e 0 se e uguale
