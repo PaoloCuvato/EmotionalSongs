@@ -1,13 +1,18 @@
 package emotionalsongs;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.List;
 
-public class Playlists implements Serializable
+public class Playlists
 {
 	private List<CollezioneCanzoni> playlists;
 	private InterfaceDB<CollezioneCanzoni> db;
+	
+	public Playlists() throws IOException
+	{
+		db = new FileDB<>("../../data/Playlist.txt");
+		playlists = db.getAll();
+	}
 	
 	public InterfaceDB<CollezioneCanzoni> getDB()
 	{
@@ -29,9 +34,4 @@ public class Playlists implements Serializable
 		this.playlists = playlists;
 	}
 	
-	public Playlists() throws IOException, ClassNotFoundException
-	{
-		db = new FileDB<>("../../data/Playlist.txt");
-		playlists = db.getAll();
-	}
 }
