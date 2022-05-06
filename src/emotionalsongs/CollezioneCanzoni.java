@@ -6,40 +6,44 @@ import java.util.List;
 
 public class CollezioneCanzoni implements Serializable
 {
-	private String nome;
-	private String id_persona;
-	private List<Integer> lista_canzoni;
+	private final String nome;
+	private final String idPersona;
+	private List<Integer> listaCanzoni;
 	
-	public CollezioneCanzoni(String nome, String id_persona)
+	public CollezioneCanzoni(String nome, String idPersona)
 	{
-		this.id_persona = id_persona;
+		if(nome == null)
+			throw new NullPointerException("nome della playlist non puo' eseere null");
+		if(idPersona == null)
+			throw new NullPointerException("l' User_id della persona che creato la playlist non puo' eseere null");
+		this.idPersona = idPersona;
 		this.nome = nome;
-		this.lista_canzoni = new ArrayList<Integer>(10);
+		this.listaCanzoni = new ArrayList<Integer>(10);
         /* potrebbe sembrare troppo poco 10 canzoni ma nel caso peggiore,
         in cui abbiamo le playsist formate da una singola canzone sprechiamo
         n*10, anziche n*100 o n*1000 e arraylist permette di aumentare gli id
-        come una classica lista */
+        come una classica lista (FORSE CAMBIARE CON LINKEDLIST PERCHE NON CI
+        SERVE RICERCA MA SOLO AGGIUNTA E RIMOZIONE, E DIMINUIREMMO RAM OCCUPATA)*/
 	}
 	
-	public void aggiungiCanzone(int id_canzone)
+	public void aggiungiCanzone(int idCanzone)
 	{
+		if(idCanzone < 0)
+			throw new NullPointerException("id canzone deve essere maggiore o uguale a 0");
 		//futura aggiunta aumentare di 10 in 10 la lista
-		lista_canzoni.add(Integer.valueOf(id_canzone));
+		listaCanzoni.add(Integer.valueOf(idCanzone));
 	}
 	
-	public void rimuoviCanzone(int id_canzone)
+	public void rimuoviCanzone(int idCanzone)
 	{
-		lista_canzoni.remove(Integer.valueOf(id_canzone));
+		if(idCanzone < 0)
+			throw new NullPointerException("id canzone deve essere maggiore o uguale a 0");
+		listaCanzoni.remove(Integer.valueOf(idCanzone));
 	}
 	
-	public String getId_persona()
+	public String getIdPersona()
 	{
-		return id_persona;
-	}
-	
-	public void setId_persona(String id_persona)
-	{
-		this.id_persona = id_persona;
+		return idPersona;
 	}
 	
 	public String getNome()
@@ -47,18 +51,15 @@ public class CollezioneCanzoni implements Serializable
 		return nome;
 	}
 	
-	public void setNome(String nome)
+	public List<Integer> getListaCanzoni()
 	{
-		this.nome = nome;
+		return listaCanzoni;
 	}
 	
-	public List<Integer> getLista_canzoni()
+	public void setListaCanzoni(List<Integer> listaCanzoni)
 	{
-		return lista_canzoni;
-	}
-	
-	public void setLista_canzoni(List<Integer> lista_canzoni)
-	{
-		this.lista_canzoni = lista_canzoni;
+		if(listaCanzoni == null)
+			throw new NullPointerException("la lista deve essere creata non puo' avere riferimento null");
+		this.listaCanzoni = listaCanzoni;
 	}
 }
