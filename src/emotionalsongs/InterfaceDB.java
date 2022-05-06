@@ -7,7 +7,7 @@ import java.util.Optional;
 public interface InterfaceDB<T>
 {
 	Optional<T> get(Object id);
-	List<T> getAll() throws IOException, ClassNotFoundException;
+	List<T> getAll() throws IOException;
 	void save(T t);
 	void update(T base, T modified);
 	void delete(T t);

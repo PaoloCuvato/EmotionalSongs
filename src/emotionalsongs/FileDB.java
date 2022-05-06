@@ -32,17 +32,25 @@ public class FileDB<T> implements InterfaceDB<T>
 		//else ecezzzione da creare...
 	}
 	
-	public List getAll() throws IOException, ClassNotFoundException
+	public List getAll() throws IOException
 	{
 		ObjectInputStream objectstream = new ObjectInputStream(input);
 		ArrayList<T> lista = new ArrayList<T>();
-		T t = (T) objectstream.readObject();	// casting di persona o canzone o playlist
-		while (t != null)						//leggo il file fino a quando non trovo un oggetto null
+		try
 		{
-			lista.add(t);
-			t = (T) objectstream.readObject();  // Rileggiamo il file con oggetti
+			T t = (T) objectstream.readObject();    // casting di persona o canzone o playlist
+			while (t != null)                        //leggo il file fino a quando non trovo un oggetto null
+			{
+				lista.add(t);
+				t = (T) objectstream.readObject();  // Rileggiamo il file con oggetti
+			}
 		}
-		objectstream.close();
+		catch (ClassNotFoundException e)
+		{}
+		finally
+		{
+			objectstream.close();
+		}
 		return lista;
 	}
 	
