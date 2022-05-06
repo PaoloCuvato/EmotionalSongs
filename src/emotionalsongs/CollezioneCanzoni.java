@@ -30,8 +30,14 @@ public class CollezioneCanzoni implements Serializable
 	{
 		if(idCanzone < 0)
 			throw new NullPointerException("id canzone deve essere maggiore o uguale a 0");
-		//futura aggiunta aumentare di 10 in 10 la lista
 		listaCanzoni.add(Integer.valueOf(idCanzone));
+	}
+	
+	public void aggiungiCanzone(Canzone c)
+	{
+		if(c == null)
+			throw new NullPointerException("non si puo' aggiungere una canzone null");
+		listaCanzoni.add(Integer.valueOf(c.getID()));
 	}
 	
 	public void rimuoviCanzone(int idCanzone)
@@ -39,6 +45,13 @@ public class CollezioneCanzoni implements Serializable
 		if(idCanzone < 0)
 			throw new NullPointerException("id canzone deve essere maggiore o uguale a 0");
 		listaCanzoni.remove(Integer.valueOf(idCanzone));
+	}
+	
+	public void rimuoviCanzone(Canzone c)
+	{
+		if(c == null)
+			throw new NullPointerException("non si puo' rimuovere una canzone null");
+		listaCanzoni.remove(Integer.valueOf(c.getID()));
 	}
 	
 	public String getIdPersona()
