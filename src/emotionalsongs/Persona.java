@@ -12,13 +12,10 @@ public class Persona implements Serializable, Comparable<Persona>
 	private String indirizzoFisico;
 	private String email;
 	private String password;
-	private String userId;
+	private final String userId;
 	
 	//costruttore
-	public Persona(){
-	}
-	
-	public Persona(String nome, String cognome, String codiceFiscale, String indirizzoFisico, String email, String password)
+	public Persona(String nome, String cognome, String codiceFiscale, String indirizzoFisico, String email, String password, String userId)
 	{
 		this.nome = nome;
 		this.cognome = cognome;
@@ -26,6 +23,7 @@ public class Persona implements Serializable, Comparable<Persona>
 		this.indirizzoFisico = indirizzoFisico;
 		this.email = email;
 		this.password = password;
+		this.userId = userId;
 	}
 	
 	//getter
@@ -94,13 +92,12 @@ public class Persona implements Serializable, Comparable<Persona>
 		this.password = nuovaPassword;
 	}
 
-	public void setUserId(String userId){
-		this.userId = userId;
-	}
 	
+	//metodo
 	public int compareTo(Persona persona)
 	{
-		if (persona == null) return 1;
+		if (persona == null)
+			throw new NullPointerException("Comparazione fallita.");
 		return codiceFiscale.compareTo(persona.codiceFiscale);
         /* ritorna:
              <0 se obj1<obj2

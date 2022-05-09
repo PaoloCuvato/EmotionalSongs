@@ -41,40 +41,47 @@ public class Persone
 	public boolean Registrazione(Persona newPersona)
 	{
 		//ritorna true se la registrazione è andata a buon fine --> utente è nuovo
-		
-		//il primo controllo che effettuo è se la lista è vuota  --> non effettuo alcun confronto
-		if (listaPersone.isEmpty())
-		{
-			listaPersone.add(newPersona);
-			db.save(newPersona);
-		}
-		//se la lista non è vuota inizio con i confronti fra persone
-		else
-		{
+
+		if (!listaPersone.isEmpty()) {
 			//utilizzo un bucle for-each per scorrere l'intera lista
-			for (Persona persona : listaPersone)
-			{
+			for (Persona persona : listaPersone) {
 				//confronto ogni persona già presente in lista con la nuova da inserire,
-				//mediante i codici fiscali
+				//mediante gli UserId
 				//condizione è true se sono uguali --> utente già registrato --> non lo salvo
-				if ((persona.getCodiceFiscale()).equals(newPersona.getCodiceFiscale()))
-				{
+				if ((persona.getUserId()).equals(newPersona.getUserId())) {
 					return false;
 				}
 			}
 			//persona è nuova --> procedo con la registrazione effettiva
-			listaPersone.add(newPersona);
-			db.save(newPersona);
 		}
+		listaPersone.add(newPersona);
+		db.save(newPersona);
 		return true;
 	}
 
 	public boolean accedi(String userId, String password)
 	{
+		/*
+		// se ritorna true --> c'è già qualcuno collegato da far disconnettere
+		if( Authentication.isLogged() ){
+			// se è la stessa persona che tenta di riaccedere --> la lasciamo dentro
+			Persona personaLogIn = Authentication.getLoggedAs();
+			if( userId.equals(personaLogIn.getUserId()) ){
+				// se condizione è true --> la persona è la stessa --> ritorna true
+				return true;
+			}else{
+				// se la condizione è false --> la persona è diversa
+
+			}
+		}
+		*/
+
 		for(Persona persona : listaPersone)
 		{
-			if( ((persona.getUserId()).equals(userId)) && ((persona.getPassword().equals(password))) )
+			if( ((persona.getUserId()).equals(userId)) & ((persona.getPassword().equals(password))) ){
+				Authentication.setAuthentication(persona);
 				return true;    //accesso riuscito
+			}
 		}
 		return false;  //accesso non riuscito
 	}
