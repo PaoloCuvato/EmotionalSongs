@@ -61,10 +61,15 @@ public class FileDB<T> implements InterfaceDB<T>
 		return null;
 	}
 	
-	public void save(T t)
+	public void save(T t) throws IOException
 	{
 		if(t == null)
 			throw new NullPointerException("il dato non puo' essere null");
+
+		ObjectOutputStream objectstream = new ObjectOutputStream(output);
+		objectstream.writeObject(t);
+		objectstream.flush();
+		objectstream.close();
 	}
 	
 	public void update(T base, T modificato)
