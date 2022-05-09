@@ -8,7 +8,7 @@ public interface InterfaceDB<T>
 {
 	Optional<T> get(Object id);
 	List<T> getAll() throws IOException;
-	void save(T t);
+	void save(T t) throws IOException;
 	void update(T base, T modified);
 	void delete(T t);
 }

@@ -38,7 +38,7 @@ public class Persone
 	}
 	
 	//metodi
-	public boolean Registrazione(Persona newPersona)
+	public boolean Registrazione(Persona newPersona) throws IOException
 	{
 		//ritorna true se la registrazione è andata a buon fine --> utente è nuovo
 
@@ -54,8 +54,8 @@ public class Persone
 			}
 			//persona è nuova --> procedo con la registrazione effettiva
 		}
-		listaPersone.add(newPersona);
-		db.save(newPersona);
+		listaPersone.add(newPersona) ;
+		db.save(newPersona) ;
 		return true;
 	}
 

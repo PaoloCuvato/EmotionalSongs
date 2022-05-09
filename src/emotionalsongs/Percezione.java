@@ -1,30 +1,39 @@
 package emotionalsongs;
 
-public class Percezione { private Emozione emozione;
-    private int Score;
-    private final String id_canzone;
-    private final String id_persona;
+public class Percezione { 
+    
+    private final Emozione emozione;
+    private final int score;
+    private final String note;
+    private final String songId;
+    private final String userId;
 
-    public Percezione(int Score,String id_canzone,String id_persona){
-        this.Score= Score;
-        this.id_canzone= id_canzone;
-        this.id_persona= id_persona;
+    public Percezione(Emozione emozione, int score, String note, String songId, String userId) {
+        this.emozione = emozione;
+        this.score = score;
+        this.note = note;
+        this.songId = songId;
+        this.userId = userId;
     }
-
-    public int getScore() { return Score; }
-
-    public void setScore(int Score) { this.Score = Score; }
-
-    public String getId_canzone() { return id_canzone; }
-
-    public String getId_persona() { return id_persona; }
 
     public Emozione getEmozione() {
         return emozione;
     }
 
-    public void setEmozione(Emozione emozione) {
-        this.emozione = emozione;
+    public int getScore() {
+        return score;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public String getSongId() {
+        return songId;
+    }
+
+    public String getUserId() {
+        return userId;
     }
 }
 
