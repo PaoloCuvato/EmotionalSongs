@@ -2,6 +2,10 @@ package emotionalsongs;
 
 import java.io.Serializable;
 
+/**
+ * Le sue istanze rappresentano una persona e raccolgono i dati personali inseriti dall'utente.
+ * @author Tropeano Martina
+ */
 public class Persona implements Serializable, Comparable<Persona>
 {
 	
@@ -13,7 +17,17 @@ public class Persona implements Serializable, Comparable<Persona>
 	private String email;
 	private String password;
 	private final String userId;
-	
+
+	/**
+	 * Costruisce un oggetto che contiene i dati personali e le credenziali di accesso dell'utente.
+	 * @param nome il nome della persona
+	 * @param cognome il cognome della persona
+	 * @param codiceFiscale il codice fiscale della persona
+	 * @param indirizzoFisico l'indirizzo fisico della persona
+	 * @param email l'indirizzo e-mail della persona
+	 * @param password la password di accesso all'applicazione
+	 * @param userId il nome utente di accesso all'applicazione
+	 */
 	//costruttore
 	public Persona(String nome, String cognome, String codiceFiscale, String indirizzoFisico, String email, String password, String userId)
 	{
@@ -25,75 +39,141 @@ public class Persona implements Serializable, Comparable<Persona>
 		this.password = password;
 		this.userId = userId;
 	}
-	
+
 	//getter
+	/**
+	 * Restituisce il nome della persona rappresentata dall'oggetto che esegue il metodo.
+	 * @return il nome della persona
+	 */
 	public String getNome()
 	{
 		return nome;
 	}
-	
+
+	/**
+	 * Restituisce il cognome della persona rappresentata dall'oggetto che esegue il metodo.
+	 * @return il cognome della persona
+	 */
 	public String getCognome()
 	{
 		return cognome;
 	}
-	
+
+	/**
+	 * Restituisce il codice fiscale della persona rappresentata dall'oggetto che esegue il metodo.
+	 * @return il codice fiscale della persona
+	 */
 	public String getCodiceFiscale()
 	{
 		return codiceFiscale;
 	}
-	
+
+	/**
+	 * Restituisce l'indirizzo fisico della persona rappresentata dall'oggetto che esegue il metodo.
+	 * @return l'indirizzo fisico della persona
+	 */
 	public String getIndirizzoFisico()
 	{
 		return indirizzoFisico;
 	}
-	
+
+	/**
+	 * Restituisce l'indirizzo email della persona rappresentata dall'oggetto che esegue il metodo.
+	 * @return l'indirizzo email della persona
+	 */
 	public String getEmail()
 	{
 		return email;
 	}
-	
+
+	/**
+	 * Restituisce la password di accesso all'account della persona rappresentata dall'oggetto che esegue il metodo.
+	 * @return la password di accesso della persona
+	 */
 	public String getPassword()
 	{
 		return password;
 	}
 
+	/**
+	 * Restituisce il nome utente della persona rappresentata dall'oggetto che esegue il metodo.
+	 * @return il nome utente della persona
+	 */
 	public String getUserId(){
 		return userId;
 	}
 	
 	//setter
+	/**
+	 * Assegna il nome fornito come argomento alla persona rappresentata dall'oggetto che esegue il metodo.
+	 * Nel caso in cui ne sia già dotata, il nuovo nome viene sovrascritto al precedente.
+	 * @param nuovoNome il nome da assegnare alla persona.
+	 */
 	public void setNome(String nuovoNome)
 	{
 		this.nome = nuovoNome;
 	}
-	
+
+	/**
+	 * Assegna il cognome fornito come argomento alla persona rappresentata dall'oggetto che esegue il metodo.
+	 * Nel caso in cui ne sia già dotata, il nuovo cognome viene sovrascritto al precedente.
+	 * @param nuovoCognome il cognome da assegnare alla persona.
+	 */
 	public void setCognome(String nuovoCognome)
 	{
 		this.cognome = nuovoCognome;
 	}
-	
+
+	/**
+	 * Assegna il codice fiscale fornito come argomento alla persona rappresentata dall'oggetto che esegue il metodo.
+	 * Nel caso in cui ne sia già dotata, il nuovo codice fiscale viene sovrascritto al precedente.
+	 * @param nuovoCodiceFiscale il codice fiscale da assegnare alla persona.
+	 */
 	public void setCodiceFiscale(String nuovoCodiceFiscale)
 	{
 		this.codiceFiscale = nuovoCodiceFiscale;
 	}
-	
+
+	/**
+	 * Assegna l'indirizzo fornito come argomento alla persona rappresentata dall'oggetto che esegue il metodo.
+	 * Nel caso in cui ne sia già dotata, il nuovo indirizzo viene sovrascritto al precedente.
+	 * @param nuovoIndirizzoFisico l'indirizzo da assegnare alla persona.
+	 */
 	public void setIndirizzoFisico(String nuovoIndirizzoFisico)
 	{
 		this.indirizzoFisico = nuovoIndirizzoFisico;
 	}
-	
+
+	/**
+	 * Assegna l'indirizzo email fornito come argomento alla persona rappresentata dall'oggetto che esegue il metodo.
+	 * Nel caso in cui ne sia già dotata, il nuovo indirizzo email viene sovrascritto al precedente.
+	 * @param nuovaEmail l'indirizzo email da assegnare alla persona.
+	 */
 	public void setEmail(String nuovaEmail)
 	{
 		this.email = nuovaEmail;
 	}
-	
+
+	/**
+	 * Assegna la password fornita come argomento alla persona rappresentata dall'oggetto che esegue il metodo.
+	 * Nel caso in cui ne sia già dotata, la nuova password viene sovrascritta alla precedente.
+	 * @param nuovaPassword la password da assegnare alla persona.
+	 */
 	public void setPassword(String nuovaPassword)
 	{
 		this.password = nuovaPassword;
 	}
 
 	
-	//metodo
+	//metodi
+	/**
+	 * Confronta la persona fornita come argomento con quella che esegue il metodo.
+	 * @see String#compareTo(String)
+	 * @param persona la persona da confrontare.
+	 * @return ritorna un intero negativo, zero o un intero positivo se rispettivamente l'oggetto che esegue il metodo è minore, uguale o maggiore dell'oggetto fornito come argomento.
+	 * @throws NullPointerException se l'oggetto fornito come argomento è null
+	 * @throws ClassCastException se il tipo dell'oggetto fornito come argomento non gli permette di essere confrontato con quello che esegue il metodo
+	 */
 	public int compareTo(Persona persona)
 	{
 		if (persona == null)
