@@ -10,7 +10,7 @@ public class Playlists
 	
 	public Playlists() throws IOException
 	{
-		db = new FileDB<>("../../data/Playlist.txt");
+		db = new FileDB<>("../../data/Playlist.dati.txt");
 		playlists = db.getAll();
 	}
 	
