@@ -33,7 +33,7 @@ public class Persone
 	
 	public Persone() throws IOException
 	{
-		db = new FileDB<>("../../data/UtentiRegistrati.txt");
+		db = new FileDB<>("../../data/UtentiRegistrati.dati.txt");
 		listaPersone = db.getAll();
 	}
 	
@@ -85,6 +85,5 @@ public class Persone
 		}
 		return false;  //accesso non riuscito
 	}
-
-
+	
 }

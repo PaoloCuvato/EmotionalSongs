@@ -3,7 +3,7 @@ package emotionalsongs;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +25,7 @@ import java.util.Optional;
 public class FileDB<T> implements InterfaceDB<T>
 {
 	private final Path path;
-	private final File file;
+	private File file;
 	private FileInputStream input;
 	private FileOutputStream output;
 	
@@ -61,7 +61,8 @@ public class FileDB<T> implements InterfaceDB<T>
 	public List getAll() throws IOException
 	{
 		ObjectInputStream objectstream = new ObjectInputStream(input);
-		ArrayList<T> lista = new ArrayList<T>();
+		//ArrayList<T> lista = new ArrayList<T>();
+		LinkedList<T> lista = new LinkedList<>();
 		try
 		{
 			T t = (T) objectstream.readObject();    // casting di persona o canzone o playlist
@@ -83,7 +84,7 @@ public class FileDB<T> implements InterfaceDB<T>
 	/**
 	 * Restituisce un oggetto dal suo identificatore
 	 * @param id identificatore
-	 * @return Optional
+	 * @return Optional contenente il dato ricercato
 	 */
 	public Optional<T> get(Object id)
 	{
@@ -96,7 +97,9 @@ public class FileDB<T> implements InterfaceDB<T>
 	/**
 	 * Salva sul file l'oggetto passato
 	 * @param t ogetto da salvare
-	 * @throws IOException
+	 * @throws IOException nel caso {@link ObjectOutputStream#writeObject(Object)} restituisca un eccezione
+	 * @see ObjectOutputStream
+	 * @see FileOutputStream
 	 */
 	public void save(T t) throws IOException
 	{
@@ -112,21 +115,59 @@ public class FileDB<T> implements InterfaceDB<T>
 	 * Sostituisce sul file l'ogetto passato con quello attuale
 	 * @param base ogetto da sostituire
 	 * @param modificato ogetto che sostituisce il precedente
+	 * @return true -se l'operazione è stata eseguita con successo
+	 * false -se l'operzione non è andata a buon fine
+	 * @throws IOException nel case {@link FileDB#save(Object)}, {@link FileDB#delete(Object)}
+	 * restituiscano un eccezione
+	 * @see ObjectOutputStream
+	 * @see FileOutputStream
 	 */
-	public void update(T base, T modificato)
+	public boolean update(T base, T modificato) throws IOException
 	{
 		if(base == null)
 			throw new NullPointerException("il dato da modificare non puo' essere null");
 		if(modificato == null)
 			throw new NullPointerException("il dato da sostituire non puo' essere null");
+		if(!this.delete(base))
+			return false;
+		this.save(modificato);
+		return true;
 	}
 	
 	/**
 	 * Elimina dal file l'ogetto passato
 	 * @param t oegtto da eliminare
+	 * @return true -se l'operazione è stata eseguita con successo
+	 * false -se l'operzione non è andata a buon fine
+	 * @throws IOException nel caso {@link ObjectOutputStream#writeObject(Object)}, {@link ObjectOutputStream#flush()},
+	 * {@link ObjectOutputStream#close()} restituiscano un eccezione
+	 * @see ObjectOutputStream
+	 * @see	FileOutputStream
 	 */
-	public void delete(T t)
+	public boolean delete(T t) throws IOException
 	{
+		if(t == null)
+		throw new NullPointerException("il ogetto da eliminare non puo' essere null");
+		LinkedList<T> lista = (LinkedList<T>)this.getAll();
+		if(!lista.remove(t))
+			return true;
+		this.close();
+		if(!file.delete())
+			return false;
+		if(!file.createNewFile())
+			return false;
+		if(!file.canWrite() && !file.canRead())
+			return false;
+		input = new FileInputStream(file);
+		output = new FileOutputStream(file);
+		ObjectOutputStream objectstream = new ObjectOutputStream(output);
+		for (T n : lista)
+		{
+			objectstream.writeObject(n);
+			objectstream.flush();
+		}
+		objectstream.close();
+		return true;
 	}
 	
 	/**
