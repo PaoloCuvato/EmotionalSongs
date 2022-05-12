@@ -146,6 +146,8 @@ public class FileDB<T> implements InterfaceDB<T>
 	 */
 	public boolean delete(T t) throws IOException
 	{
+		if(t == null)
+		throw new NullPointerException("il ogetto da eliminare non puo' essere null");
 		LinkedList<T> lista = (LinkedList<T>)this.getAll();
 		if(!lista.remove(t))
 			return true;
