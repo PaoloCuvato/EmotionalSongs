@@ -6,18 +6,21 @@ import java.util.List;
 
 public class CollezioneCanzoni implements Serializable
 {
+	private static int ID = 0; //va fatto settare ogni volta che riapro la applicazione
+	private final int idPlaylist; //massimo 2147483647 playlist differenti
 	private final String nome;
-	private final String idPersona;
+	private final int idPersona;
 	private List<Integer> listaCanzoni;
 	
-	public CollezioneCanzoni(String nome, String idPersona)
+	public CollezioneCanzoni(String nome, int idPersona)
 	{
 		if(nome == null)
 			throw new NullPointerException("nome della playlist non puo' eseere null");
-		if(idPersona == null)
-			throw new NullPointerException("l' User_id della persona che creato la playlist non puo' eseere null");
+		if(idPersona < 0)
+			throw new NullPointerException("l' id della persona che creato la playlist non puo' essere minore di 0");
 		this.idPersona = idPersona;
 		this.nome = nome;
+		idPlaylist = ID++;
 		this.listaCanzoni = new ArrayList<Integer>(10);
         /* potrebbe sembrare troppo poco 10 canzoni ma nel caso peggiore,
         in cui abbiamo le playsist formate da una singola canzone sprechiamo
@@ -37,7 +40,8 @@ public class CollezioneCanzoni implements Serializable
 	{
 		if(c == null)
 			throw new NullPointerException("non si puo' aggiungere una canzone null");
-		listaCanzoni.add(Integer.valueOf(c.getID()));
+		//listaCanzoni.add(Integer.valueOf(c.getID())); da eliminare
+		this.aggiungiCanzone(c.getID());
 	}
 	
 	public void rimuoviCanzone(int idCanzone)
@@ -51,10 +55,21 @@ public class CollezioneCanzoni implements Serializable
 	{
 		if(c == null)
 			throw new NullPointerException("non si puo' rimuovere una canzone null");
-		listaCanzoni.remove(Integer.valueOf(c.getID()));
+		//listaCanzoni.remove(Integer.valueOf(c.getID())); da eliminare
+		this.rimuoviCanzone(c.getID());
 	}
 	
-	public String getIdPersona()
+	public boolean canzonePresente(int idCanzone)
+	{
+		return listaCanzoni.contains(Integer.valueOf(idCanzone));
+	}
+	
+	public boolean canzonePresente(Canzone c)
+	{
+		return this.canzonePresente(c.getID());
+	}
+	
+	public int getIdPersona()
 	{
 		return idPersona;
 	}
@@ -74,5 +89,10 @@ public class CollezioneCanzoni implements Serializable
 		if(listaCanzoni == null)
 			throw new NullPointerException("la lista deve essere creata non puo' avere riferimento null");
 		this.listaCanzoni = listaCanzoni;
+	}
+	
+	public static void setID(int id)
+	{
+		ID = id;
 	}
 }
