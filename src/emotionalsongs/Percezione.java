@@ -24,11 +24,27 @@ public class Percezione {
     //costruttore
 
     public Percezione(Emozione emozione, int score, String note, String songId, String userId) {
+        if (emozione == null)
+            throw new NullPointerException("Emozione non può essere un valore nullo");
+
+        if (score == 0)
+            throw new NullPointerException("score non può essere un valore nullo");
+
+        if (songId == null)
+            throw new NullPointerException("songId non può essere un valore nullo");
+
+        if (userId == null)
+            throw new NullPointerException("userId non può essere un valore nullo");
+
         this.emozione = emozione;
-        this.score = score;
+        if (score>5)
+            this.score =5;
+        else
+            this.score = score;
         this.note = note;
         this.songId = songId;
         this.userId = userId;
+
     }
 
     //getter
@@ -73,8 +89,7 @@ public class Percezione {
      * @return il nome dell'utente
      */
 
-    public String getUserId() {
-        return userId;
-    }
+    public String getUserId() {return userId;}
+
 }
 
