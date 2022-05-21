@@ -12,6 +12,7 @@ public class Playlists
 	{
 		db = new FileDB<>("../../data/Playlist.dati.txt");
 		playlists = db.getAll();
+		CollezioneCanzoni.setID(playlists.size());
 	}
 	
 	public InterfaceDB<CollezioneCanzoni> getDB()
@@ -32,6 +33,16 @@ public class Playlists
 	public void setPlaylists(List<CollezioneCanzoni> playlists)
 	{
 		this.playlists = playlists;
+	}
+	
+	public boolean associaCanzonePersona(int idPersona, int idCanzone)
+	{
+		for (CollezioneCanzoni c : playlists)
+		{
+			if (idPersona == c.getIdPersona())
+				return c.canzonePresente(idCanzone);
+		}
+		return false;
 	}
 	
 }
