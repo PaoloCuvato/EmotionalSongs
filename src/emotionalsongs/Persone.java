@@ -3,41 +3,76 @@ package emotionalsongs;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Permette di controllare la situazione degli utenti già registrati.
+ * @author Tropeano Martina
+ */
 public class Persone
 {
 	
 	private List<Persona> listaPersone;
 	private InterfaceDB<Persona> db;
+
+	//costruttore
+	/**
+	 * Costruisce un
+	 * @throws IOException
+	 */
+	public Persone() throws IOException
+	{
+		db = new FileDB<>("../../data/UtentiRegistrati.txt");
+		listaPersone = db.getAll();
+	}
 	
 	//getter
+	/**
+	 * Restituisce
+	 * @return
+	 */
 	public InterfaceDB<Persona> getDB()
 	{
 		return db;
 	}
-	
+
+	/**
+	 * Restituisce la lista degli utenti già iscritti.
+	 * @return lista utenti registrati.
+	 */
 	public List<Persona> getListaPersone()
 	{
 		return listaPersone;
 	}
 	
 	//setter
+
+	/**
+	 *
+	 * @param DB
+	 */
 	public void setDB(InterfaceDB<Persona> DB)
 	{
 		this.db = DB;
 	}
-	
+
+	/**
+	 *
+	 * @param listaPersone
+	 */
 	public void setListaPersone(List<Persona> listaPersone)
 	{
 		this.listaPersone = listaPersone;
 	}
-	
-	public Persone() throws IOException
-	{
-		db = new FileDB<>("../../data/UtentiRegistrati.dati.txt");
-		listaPersone = db.getAll();
-	}
-	
+
+
+
 	//metodi
+
+	/**
+	 *Permette di effettuare la registrazione di un nuovo utente all'applicazione. Aggiunge poi il nuovo oggetto persona al
+	 * @param newPersona
+	 * @return True se l'utente è nuovo e la registrazione è andata a buon fine. False se era già presente una persona con quei dati e la registrazione è quindi fallita.
+	 * @throws IOException
+	 */
 	public boolean Registrazione(Persona newPersona) throws IOException
 	{
 		//ritorna true se la registrazione è andata a buon fine --> utente è nuovo
@@ -59,6 +94,14 @@ public class Persone
 		return true;
 	}
 
+
+	/**
+	 *Permette di accedere all'applicazione con i dati inseriti in fase di registrazione.
+	 * Dopo aver effettuato l'accesso, sarà possibile per l'utente creare le proprie playlist e
+	 * @param userId l'userId scelto in fase di registrazione
+	 * @param password la password scelta in fase di registrazione
+	 * @return
+	 */
 	public boolean accedi(String userId, String password)
 	{
 		/*
@@ -85,5 +128,6 @@ public class Persone
 		}
 		return false;  //accesso non riuscito
 	}
-	
+
+
 }
