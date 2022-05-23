@@ -34,7 +34,14 @@ public class Playlists
 	{
 		this.playlists = playlists;
 	}
-	
+
+	/**
+	 * Con
+	 * @param idPersona
+	 * @param idCanzone
+	 * @return True se la canzone corrispondente all'IdCanzone passato come argomento è presente in almeno una delle playlist dell'utente corrispondente all'IdPersona passato come argomento.
+	 * 		   False altrimenti.
+	 */
 	public boolean associaCanzonePersona(int idPersona, int idCanzone)
 	{
 		for (CollezioneCanzoni c : playlists)
