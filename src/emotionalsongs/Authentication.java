@@ -53,7 +53,7 @@ public class Authentication {
 
     /**
      * Permette di controllare se qualcuno ha già effettuto l'accesso all'applicazione rimanendo connesso.
-     * @return True se qualcuno ha già effettutato l'accesso. False se nessuno è connesso.
+     * @return True se qualcuno ha già effettuato l'accesso. False se nessuno è connesso.
      */
     public static boolean isLogged()
     {
