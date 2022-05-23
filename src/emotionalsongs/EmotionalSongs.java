@@ -11,7 +11,7 @@ public class EmotionalSongs {
         int r;
         Canzoni canzoni = new Canzoni();
         Persone persone = new Persone();
-        Authentication authentication = new Authentication();
+        //Authentication authentication = new Authentication(); non serve, spego lundeì differenza DA ELIMINARE
         Scanner sc = new Scanner(System.in);
 
         do {
@@ -85,8 +85,8 @@ public class EmotionalSongs {
                     break;
 
                 case 5:
-                    if( authentication.isLogged() ){
-                        String userIdConnesso = (authentication.getLoggedAs()).getUserId();
+                    if( Authentication.isLogged() ){
+                        String userIdConnesso = (Authentication.getLoggedAs()).getUserId();
                         System.out.println("Impossibile effettuare l'accesso: utente " + userIdConnesso + "già connesso.");
                         System.out.println("Effettuare il LogOut? (S/N)");
                         char check = sc.next().charAt(0);
@@ -95,7 +95,7 @@ public class EmotionalSongs {
                             check = sc.next().charAt(0);
                         }
                         if( check == 'S'){
-                            authentication.logOut();
+                            Authentication.logOut();
                             System.out.println("Ora puoi effettuare l'accesso.");
                         }else{
                             System.out.println("Continua come utente " + userIdConnesso);
