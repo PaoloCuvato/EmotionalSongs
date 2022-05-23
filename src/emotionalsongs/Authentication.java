@@ -26,12 +26,19 @@ public class Authentication {
         else
             return loggedAs;
     }
-    
+
+    /**
+     * Permette di effettuare il LogOut dall'applicazione.
+     */
     public static void logOut()
     {
         loggedAs = null;
     }
-    
+
+    /**
+     * Permette di controllare se qualcuno ha già effettuto l'accesso all'applicazione rimanendo connesso.
+     * @return True se qualcuno ha già effettutato l'accesso. False se nessuno è connesso.
+     */
     public static boolean isLogged()
     {
         if(loggedAs == null)
