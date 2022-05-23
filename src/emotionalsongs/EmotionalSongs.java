@@ -11,7 +11,6 @@ public class EmotionalSongs {
         int r;
         Canzoni canzoni = new Canzoni();
         Persone persone = new Persone();
-        //Authentication authentication = new Authentication(); non serve, spego lundeì differenza DA ELIMINARE
         Scanner sc = new Scanner(System.in);
 
         do {
@@ -22,8 +21,9 @@ public class EmotionalSongs {
                     "\t 3. Visualizza le emozioni \n" +
                     "\t 4. Registrazione \n" +
                     "\t 5. Accedi \n" +
-                    "\t 6. Crea una playlist \n" +
-                    "\t 7. Inserisci le emozioni \n" +
+                    "\t 6. Logout \n" +
+                    "\t 7. Crea una playlist \n" +
+                    "\t 8. Inserisci le emozioni \n" +
                     "\t 0. Esci dal programma \n");
             System.out.print("Inserisci l'intero corrispondente alla tua scelta: ");
             r = sc.nextInt();
@@ -88,7 +88,7 @@ public class EmotionalSongs {
                     if( Authentication.isLogged() ){
                         String userIdConnesso = (Authentication.getLoggedAs()).getUserId();
                         System.out.println("Impossibile effettuare l'accesso: utente " + userIdConnesso + "già connesso.");
-                        System.out.println("Effettuare il LogOut? (S/N)");
+                        System.out.println("Effettuare il logout? (S/N)");
                         char check = sc.next().charAt(0);
                         while( check != 'S' && check != 'N' ){
                             System.out.println("Il valore inserito non è valido. Prego reinserire S o N.");
@@ -96,7 +96,7 @@ public class EmotionalSongs {
                         }
                         if( check == 'S'){
                             Authentication.logOut();
-                            System.out.println("Ora puoi effettuare l'accesso.");
+                            System.out.println("Disconnessione avvenuta con successo. Ora puoi effettuare l'accesso.");
                         }else{
                             System.out.println("Continua come utente " + userIdConnesso);
                             break;
@@ -115,7 +115,26 @@ public class EmotionalSongs {
                     break;
 
                 case 6:
+                    Authentication.logOut();
+                    System.out.println("Disconnessione avvenuta con successo.");
+                    break;
 
+                case 7:
+                    boolean continua = false;
+                    if( !Authentication.isLogged() ){
+                        System.out.println("Per creare una playlist, devi prima effettuare l'accesso.");
+                        break;
+                    }
+                    String idPersona = (Authentication.getLoggedAs()).getUserId();
+                    do{
+                        System.out.println("Dai un nome alla tua playlist.");
+                        String titoloPlaylist = sc.nextLine();
+                        CollezioneCanzoni playlistCreata = new CollezioneCanzoni( titoloPlaylist, 0 );   //@TODO sistemare gli Id
+                        System.out.println("");
+
+
+                    }while( continua );     //esce dal ciclo quando continua è false
+                    // @TODO mostrare playlist appena creata
                     break;
 
                 case 0:
@@ -133,5 +152,20 @@ public class EmotionalSongs {
 
 
         }while( r != 0 );
+    }
+
+    public static void cercaBranoMusicale(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Effettuare ricerca per (1) titolo o (2) autore e anno?");
+        int scelta = sc.next().charAt(0);
+        while( scelta!= 1 && scelta!=2 ){
+            System.out.println("Il valore inserito non è valido. Prego reinserire 1 o 2.");
+            scelta = sc.next().charAt(0);
+        }
+        if( scelta == 1){
+
+        }
+
+
     }
 }
