@@ -2,6 +2,7 @@ package emotionalsongs;
 
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -21,12 +22,23 @@ public class Percezioni {
             throw new NullPointerException("la lista delle percezioni non può essere null");
     }
 
+    public List cercaEmozioni(String idCanzone) {
+        LinkedList<Percezione> listaEmozioni= new LinkedList<Percezione>();
+        for (Percezione p: listaPercezioni) {
+            if (idCanzone.equals(p.getSongId()))
+                listaEmozioni.add(p);
+        }
+        if (listaEmozioni.size()==0)
+            return null;
+        return listaEmozioni;}
+
+
     //getter e setter
     /**
      * Restituisce la lista delle percezioni rappresentata dall'oggetto che esegue il metodo.
      * @return la lista delle percezioni
      */
-
+    
     public List<Percezione> getListaPercezioni() {
         return listaPercezioni;
     }
@@ -55,9 +67,6 @@ public class Percezioni {
      */
 
     public void setDb(InterfaceDB<Percezione> db) {
-
-        if(db == null)
-            throw new NullPointerException("il percorso non può essere null");
         this.db = db;
     }
-    }
+}
